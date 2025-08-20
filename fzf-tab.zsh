@@ -47,6 +47,9 @@ builtin unalias -m '[^+]*'
   # only store the fist `-X`
   expl=$expl[2]
 
+  # strip escape sequences from group names
+  expl=$(print -r -- "$expl" | sed 's/%{[^}]*}//g')
+
   # keep order of group description
   [[ -n $expl ]] && _ftb_groups+=$expl
 
